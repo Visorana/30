@@ -1,9 +1,9 @@
-import GameSavingLoader from '../../GameSavingLoader.js';
-import json from '../../parser.js';
-import read from '../../reader.js';
+import GameSavingLoader from '../GameSavingLoader.js';
+import json from '../parser.js';
+import read from '../reader.js';
 
-jest.mock('../../parser.js');
-jest.mock('../../reader.js');
+jest.mock('../parser.js');
+jest.mock('../reader.js');
 
 describe('GameSavingLoader', () => {
   afterEach(() => {

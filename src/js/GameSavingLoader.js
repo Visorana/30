@@ -1,5 +1,6 @@
 import json from './parser.js';
 import read from './reader.js';
+import GameSaving from './GameSaving.js';
 
 export default class GameSavingLoader {
   static async load() {
@@ -7,16 +8,11 @@ export default class GameSavingLoader {
       const data = await read();
       const jsonData = await json(data);
       const parsedData = JSON.parse(jsonData);
-      const gameSaving = {
-        id: parsedData.id,
-        created: parsedData.created,
-        userinfo: {
-          id: parsedData.userInfo.id,
-          name: parsedData.userInfo.name,
-          level: parsedData.userInfo.level,
-          points: parsedData.userInfo.points,
-        },
-      };
+      const gameSaving = new GameSaving(
+        parsedData.id,
+        parsedData.created,
+        parsedData.userInfo,
+      );
       return gameSaving;
     } catch (error) {
       throw new Error(`Error loading the game saving: ${error.message}`);
